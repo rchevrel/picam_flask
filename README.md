@@ -1,2 +1,2 @@
 # picam_flask
-Flask Rest server with template for Pi Camera - multi client 
+Flask REST server with HTML template for picamera - multi clients
