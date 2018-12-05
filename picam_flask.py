@@ -8,8 +8,6 @@ app = Flask(__name__)
 
 camera = picamera.PiCamera()
 camera.framerate = 5
-#camera.resolution = (2592, 1944) # 640, 480)
-#camera.iso = 800
 
 image_mutex = Lock()
 image = None
@@ -25,7 +23,6 @@ def start_rpicam():
             image_mutex.release()
         # next image
         camera.annotate_text = get_current_time()
-        stream.seek(0)
         stream.truncate()
 
 def image_gen():
