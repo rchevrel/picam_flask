@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket demo</title>
+  </head>
+  <body>
+    <script>
+      var count = 1;
+      var ws = new WebSocket('ws://192.168.43.5:5678/');
+      ws.binaryType = 'arraybuffer';
+      var messages = document.createElement('ul');
+      ws.onmessage = function(event) {
+        console.log(count++);
+        // var messages = document.getElementsByTagName('ul')[0],
+        // message = document.createElement('li'),
+        // content = document.createTextNode(event.data.length);
+        // message.appendChild(content);
+        // messages.appendChild(message);
+
+        var blob = new Blob([event.data], { type: 'image/jpeg' });
+        var urlCreator = window.URL || window.webkitURL;
+        var imageUrl = urlCreator.createObjectURL(blob);
+        var img = document.getElementById('#photo');
+        img.src = imageUrl;
+      };
+      document.body.appendChild(messages);
+    </script>
+    <img id="#photo" />
+  </body>
+</html>
